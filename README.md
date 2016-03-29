@@ -4,7 +4,7 @@
 
 postcss-asset-url-rails converts Rails's [asset pipeline helpers](http://guides.rubyonrails.org/asset_pipeline.html) into Rails's ERB syntax. This allows you to build CSS files using postcss outside Rails, output them as `.css.erb` for use in the Rails asset pipeline. It takes `asset-url(...)` values and turns them into `url(<%= asset_path(...) %>)`.
 
-```css
+```erb
 /* Input:  */  div { background: asset-url("hello.jpg") }
 /* Output: */  div { background: url(<%= asset_path("hello.jpg") %>) }
 ```
