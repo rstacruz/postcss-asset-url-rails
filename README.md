@@ -22,11 +22,12 @@ npm install --save-dev postcss-brunch postcss-asset-url-rails
 ```
 
 ```js
+/* brunch-config.js */
 plugins: {
   postcss: {
     processors: [
-			require('postcss-asset-url-rails')()
-		]
+      require('postcss-asset-url-rails')()
+    ]
 ```
 
 <br>
