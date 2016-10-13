@@ -15,8 +15,14 @@ test('works', function (t) {
   var result = process('div { background: font-url("xyz.jpg") repeat }')
   t.equal(result, 'div { background: url(<%= font_path("xyz.jpg") %>) repeat }', 'transforms font-url')
 
+  var result = process('div { background: asset-data-url("xyz.jpg") repeat }')
+  t.equal(result, 'div { background: url(<%= asset_data_uri("xyz.jpg") %>) repeat }', 'transforms asset-data-url')
+
   var result = process('div { background: aoeu-url("xyz.jpg") repeat }')
   t.equal(result, 'div { background: aoeu-url("xyz.jpg") repeat }', "doesn't transform url helpers it doesn't know")
+
+  var result = process('div { background: aoeu-data-url("xyz.jpg") repeat }')
+  t.equal(result, 'div { background: aoeu-data-url("xyz.jpg") repeat }', "doesn't transform data url helpers it doesn't know")
 
   t.end()
 })
