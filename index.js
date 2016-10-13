@@ -1,7 +1,7 @@
 var postcss = require('postcss')
 var valueParser = require('postcss-value-parser')
 
-var types = ['asset', 'image', 'font']
+var types = ['asset', 'image', 'font', 'asset-data']
 
 /*
  * Plugin to transform `asset-url(...)` to `url(<%= asset_path(...) %>)`
@@ -48,7 +48,7 @@ function transformUrl (value) {
     if (node.type === 'function' && isUrlHelper(node.value)) {
       // node.nodes === [ { type: 'string', value: 'lmao' } ]
       var url = node.nodes[0].value
-      var helper = node.value.replace('-url', '_path') /* 'asset_url' */
+      var helper = node.value === 'asset-data-url' ? 'asset_data_uri' : node.value.replace('-url', '_path') /* 'asset_url' */
       node.value = 'url'
       node.nodes[0] = {
         type: 'string',
